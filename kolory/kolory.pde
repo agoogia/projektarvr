@@ -6,31 +6,37 @@ KetaiCamera cam;
 
 void setup() {
   orientation(LANDSCAPE);
-  cam = new KetaiCamera(this, displayHeight, displayWidth, 36);
-  
+  cam = new KetaiCamera(this, displayHeight, displayWidth, 24); //jak duze jest pole wyswietlania
+  cam.loadPixels();
 }
 
 
 void draw() {
-  cam.loadPixels();
-  image(cam, 0, 0);
-  image(cam, 640, 0);
+  loadPixels();
+   imageColor(cam, 0, 0);
+   updatePixels();
+   imageColor(cam, 640, 0);
+}
 
-    for (int a = 0; a < cam.height/2; a ++ ) {
+
+void imageColor(KetaiCamera cam, float x, float y){
+  
+  for (int a = 0; a < (cam.height); a ++ ) {
       for (int b = 0; b < cam.width; b ++ ) {
-        int i = a + b*cam.width;
+        int i = a + b*(cam.height);
         float cze = red(cam.pixels[i]);
         float zie = green(cam.pixels[i]);
         float nie = blue(cam.pixels[i]);
         color c = color(zie, zie, nie);
         pixels[i] = c;
-        updatePixels();
       }
-    }
   }
-
-
-
+  pushMatrix();
+      image (cam, x,y);
+      popMatrix();
+      
+    }
+  
 
 void onCameraPreviewEvent()
 {

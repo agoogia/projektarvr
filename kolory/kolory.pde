@@ -16,18 +16,18 @@ void draw() {
   image(cam, 0, 0);
   image(cam, 640, 0);
 
-    for (int a = 0; a < cam.height/2; a ++ ) {
-      for (int b = 0; b < cam.width; b ++ ) {
-        int i = a + b*cam.width;
-        float cze = red(cam.pixels[i]);
-        float zie = green(cam.pixels[i]);
-        float nie = blue(cam.pixels[i]);
-        color c = color(zie, zie, nie);
-        pixels[i] = c;
-        updatePixels();
-      }
+  for (int a = 0; a < cam.height/2; a ++ ) {
+    for (int b = 0; b < cam.width; b ++ ) {
+      int i = a + b*cam.width;
+      float cze = red(cam.pixels[i]);
+      float zie = green(cam.pixels[i]);
+      float nie = blue(cam.pixels[i]);
+      color c = color(zie, zie, nie);
+      pixels[i] = c;
+      updatePixels();
     }
   }
+}
 
 
 

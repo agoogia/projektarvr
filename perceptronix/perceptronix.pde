@@ -4,11 +4,20 @@ import ketai.camera.*;
 
 KetaiCamera cam;
 String effect;
+PImage img_menu;
+Boolean menuVisible;
+MenuItem[] menuList;
 
 void setup() {
   orientation(LANDSCAPE);
   cam = new KetaiCamera(this, displayHeight, displayWidth, 36);
   effect = "imageRotate";
+  img_menu = loadImage("menu3.png");
+  menuVisible = false;
+  menuList = new MenuItem[3];
+  menuList[0] = new MenuItem(1, "imageRotate");
+  menuList[1] = new MenuItem(2, "imageFlipped");
+  menuList[2] = new MenuItem(3, "imageColor");
 }
 
 void draw() {
@@ -23,6 +32,12 @@ void draw() {
     imageColor(cam, 0, 0);
     updatePixels();
     imageColor(cam, 640, 0);
+  }
+  image(img_menu, width - 100, 20);
+  if(menuVisible) {
+    for(int i = 0; i < menuList.length; i++) {
+      menuList[i].show();
+    }
   }
 }
 
@@ -56,17 +71,57 @@ void imageColor( KetaiCamera cam, float x, float y ) {
   popMatrix();  
 }
 
+void toggleMenu() {
+    if(menuVisible) menuVisible = false;
+    else menuVisible = true;
+}
+
 void onCameraPreviewEvent() {
   cam.read();
 }
 
-// start/stop camera preview by tapping the screen
 void mousePressed() {
-  if( cam.isStarted() ) {
-    cam.stop();
+  if( mouseX < width - 20
+    && mouseX > width - 100
+    && mouseY < 90
+    && mouseY > 20 ) {
+      toggleMenu();
+    }
+  // 1
+  if( menuVisible
+    && mouseX < width - 20
+    && mouseX > width - 320
+    && mouseY < 166
+    && mouseY >= 93 ) {
+      for(int i = 0; i < menuList.length; i++)
+        menuList[i].setCurrent(false);
+      menuList[0].setCurrent(true);
+      effect = menuList[0].getName();
+      menuVisible = false;
   }
-  else {
-    cam.start();
+  // 2
+  if( menuVisible
+    && mouseX < width - 20
+    && mouseX > width - 320
+    && mouseY < 239
+    && mouseY >= 166 ) {
+      for(int i = 0; i < menuList.length; i++)
+        menuList[i].setCurrent(false);
+      menuList[1].setCurrent(true);
+      effect = menuList[1].getName();
+      menuVisible = false;
+  }
+  // 3
+  if( menuVisible
+    && mouseX < width - 20
+    && mouseX > width - 320
+    && mouseY < 312
+    && mouseY >= 239 ) {
+      for(int i = 0; i < menuList.length; i++)
+        menuList[i].setCurrent(false);
+      menuList[2].setCurrent(true);
+      effect = menuList[2].getName();
+      menuVisible = false;
   }
 }
 

@@ -33,13 +33,13 @@ public class MenuItem {
   public void show() {
     fill(200);
     noStroke();
-    rect(width - 320, 20 + 73 * id, 300, 70);
+    rect(displayHeight - 320, 20 + 73 * id, 300, 70);
     fill(50);
     textFont(f, 18);
-    text(name, width - 260, 62 + 73 * id);
+    text(name, displayHeight - 260, 62 + 73 * id);
     if(current) {
       fill(#ff6666);
-      ellipse(width - 290, 56 + 73 * id, 15, 15);
+      ellipse(displayHeight - 290, 56 + 73 * id, 15, 15);
     }
   }
 

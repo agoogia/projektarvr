@@ -33,7 +33,7 @@ void draw() {
     updatePixels();
     imageColor(cam, 640, 0);
   }
-  image(img_menu, width - 100, 20);
+  image(img_menu, displayHeight - 100, 20);
   if(menuVisible) {
     for(int i = 0; i < menuList.length; i++) {
       menuList[i].show();
@@ -81,16 +81,16 @@ void onCameraPreviewEvent() {
 }
 
 void mousePressed() {
-  if( mouseX < width - 20
-    && mouseX > width - 100
+  if( mouseX < displayHeight - 20
+    && mouseX > displayHeight - 100
     && mouseY < 90
     && mouseY > 20 ) {
       toggleMenu();
     }
   // 1
   if( menuVisible
-    && mouseX < width - 20
-    && mouseX > width - 320
+    && mouseX < displayHeight - 20
+    && mouseX > displayHeight - 320
     && mouseY < 166
     && mouseY >= 93 ) {
       for(int i = 0; i < menuList.length; i++)
@@ -101,8 +101,8 @@ void mousePressed() {
   }
   // 2
   if( menuVisible
-    && mouseX < width - 20
-    && mouseX > width - 320
+    && mouseX < displayHeight - 20
+    && mouseX > displayHeight - 320
     && mouseY < 239
     && mouseY >= 166 ) {
       for(int i = 0; i < menuList.length; i++)
@@ -113,8 +113,8 @@ void mousePressed() {
   }
   // 3
   if( menuVisible
-    && mouseX < width - 20
-    && mouseX > width - 320
+    && mouseX < displayHeight - 20
+    && mouseX > displayHeight - 320
     && mouseY < 312
     && mouseY >= 239 ) {
       for(int i = 0; i < menuList.length; i++)
